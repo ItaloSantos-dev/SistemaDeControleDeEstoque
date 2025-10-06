@@ -6,7 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Produto extends Model
 {
+    protected $fillable = [
+        'nome', 'categoria_id', 'preco', 'estoque', 'quantidade', 'unidade', 'imagem'
+    ];
+
     public function variacoes(){
         return $this->hasMany(Variacao::class);
     }
+
 }

@@ -16,6 +16,10 @@ return new class extends Migration
             $table->string('nome', 100)->unique();
             $table->unsignedBigInteger('categoria_id');
             $table->string('imagem', 500);
+            $table->decimal('preco', 6,2);
+            $table->decimal('quantidade', 6,2);
+            $table->string('unidade');
+            $table->integer('estoque');
             $table->timestamps();
 
             $table->foreign('categoria_id')->references('id')->on('categorias')->onDelete('cascade');

@@ -23,7 +23,7 @@
 
         <div class="row mt-2">
             <div class="col">
-                <a class="btn btn-success" href="">Adicionar um produto</a>
+                <a class="btn btn-success" href="{{route('produtos.create')}}">Adicionar um produto</a>
             </div>
         </div>
         
@@ -39,13 +39,13 @@
             @foreach($produtos as $produto)
                 <div class="col-md-2 mb-3 mt-3">
                     <div class="card  h-100 text-center shadow">
-                        <img class="card-img-top p-3" style="height: 18vh;" src="{{$produto->imagem}}" alt="">
+                        <img class="card-img-top p-3" style="height: 25vh;" src="{{$produto->imagem}}" alt="">
                         <div class="card-body">
                             <h5 class="card-title">{{$produto->nome}}</h5>
                             <div class="border">
-                                <p class="card-text">R$ {{$produto->variacoes->first()->preco}}</p>
+                                <p class="card-text">R$ {{$produto->preco}}</p>
                                 <p class="card-text">{{floor($produto->quantidade)}} {{$produto->unidade}}</p>
-                                <p class="card-text">Estoque: {{$produto->variacoes->first()->estoque}}</p>
+                                <p class="card-text">Estoque: {{$produto->estoque}}</p>
                             </div>
                         </div>
                     </div>
