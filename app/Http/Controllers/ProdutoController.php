@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Categoria;
 use App\Models\Produto;
+use Illuminate\Auth\Events\Validated;
 use Illuminate\Http\Request;
 
 class ProdutoController extends Controller
@@ -31,22 +32,41 @@ class ProdutoController extends Controller
      */
     public function store(Request $request)
     {
+        $novoProduto = $request->validate([
+            'nome' => 'required|string|max:100',
+            'categoria_id' => 'required|numeric',
+            'imgurl' => 'required|url',
+            'preco'=>'numeric|required',
+            'estoque'=>'integer|required',
+            'quantidade'=>'required|numeric',
+            'unidade' =>'required|string',
+
+        ]);
+        $novoProduto['imagem']= $request->imgurl;
+
+        Produto::create($novoProduto);
+        return redirect()->route('produtos.index');
+
+        
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Produto $produto)
+    public function show()
     {
-        //
+        
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Produto $produto)
+    public function edit($id)
     {
-        //
+        $produto = Produto::with('categoria')->find($id);
+        $categorias = Categoria::all();
+
+        return view('editarproduto', compact('produto', 'categorias'));
     }
 
     /**
@@ -54,14 +74,15 @@ class ProdutoController extends Controller
      */
     public function update(Request $request, Produto $produto)
     {
-        //
+        //atualizar os campos
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Produto $produto)
+    public function destroy($id)
     {
-        //
+        Produto::destroy($id);
+        return redirect()->route('produtos.index')->with('info', 'produto apagado com sucesso');
     }
 }

@@ -16,6 +16,15 @@ footer {
     <form class="container form-group text-center rounded shadow border mt-2 mb-2 p-2 position-absolute translate-middle top-50 start-50" method="post" action="{{route('produtos.store')}}" enctype="multipart/form-data">
         @csrf
 
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
 
         
 
@@ -31,7 +40,7 @@ footer {
             <div class="col">
                 <label class="form-label" for="categoria_id">Categoria</label>
                 <select name="categoria_id" id="categoria" class="form-control">
-                    <option value="">Selecione</option>
+                    <option value="">Selecione</option>|
                     @foreach ($categorias as $categoria )
                         <option value="{{$categoria->id}}">{{ucfirst($categoria->nome)}}</option>
                     @endforeach

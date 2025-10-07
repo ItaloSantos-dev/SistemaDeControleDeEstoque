@@ -35,6 +35,7 @@
 @section('content')
     
     <div class="container">
+        
         <div class="row ">
             @foreach($produtos as $produto)
                 <div class="col-md-2 mb-3 mt-3">
@@ -47,6 +48,18 @@
                                 <p class="card-text">{{floor($produto->quantidade)}} {{$produto->unidade}}</p>
                                 <p class="card-text">Estoque: {{$produto->estoque}}</p>
                             </div>
+                        </div>
+                        <div class="card-footer d-flex gap-2 text-center justify-content-center">
+                            <form action="{{route('produtos.edit', $produto->id)}}" method="get">
+                                @csrf
+                                <button type="submit" value="" class="btn btn-primary bi bi-pencil-square"> </button>
+                            </form>
+                            <form action="{{route('produtos.destroy', $produto->id)}}" method="post">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" value="" class="btn btn-danger bi bi-trash3"> </button>
+
+                            </form>
                         </div>
                     </div>
                 </div>

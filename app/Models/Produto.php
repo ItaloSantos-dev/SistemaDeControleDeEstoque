@@ -10,8 +10,8 @@ class Produto extends Model
         'nome', 'categoria_id', 'preco', 'estoque', 'quantidade', 'unidade', 'imagem'
     ];
 
-    public function variacoes(){
-        return $this->hasMany(Variacao::class);
+    public function categoria(){
+        return $this->belongsTo(Categoria::class);
     }
 
 }
