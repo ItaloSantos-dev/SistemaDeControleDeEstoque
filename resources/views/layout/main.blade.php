@@ -6,6 +6,7 @@
     <title>@yield('title')</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="shortcut icon" href="{{ asset('icon.png') }}" type="image/x-icon">
     
     <style>
         header{
@@ -35,7 +36,9 @@
             <ul class="list-unstyled d-flex gap-2 justify-content-center mb-auto" >
                 <li><a class="menu-btn text-decoration-none" href="/estoque">Estoque</a></li>
                 <li><a class="menu-btn text-decoration-none" href="/">Menu principal</a></li>
-                <li><a class="menu-btn text-decoration-none" href="">Realizar venda</a></li>
+                <li><a class="menu-btn text-decoration-none" href="/vendas">Vendas</a></li>
+                <li><a class="menu-btn text-decoration-none" href="/realizarvenda">Realizar venda</a></li>
+
             </ul>
         </nav>
     </header>

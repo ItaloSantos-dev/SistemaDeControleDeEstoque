@@ -2,7 +2,19 @@
 @section('title', 'Editar produto')
 
 @section('content')
+@if(session()->has('info'))
+    <div class="container text-center alert alert-info mt-1">
+        <div class="row">
+            <div class="col">
+                
+                    {{session('info')}}
+                
+            </div>
+        </div>
+    </div>
+@endif
     <div class="container d-flex mt-3 mb-3 ">
+        
         <div class=" card text-center p-3 shadow">
             <img src="{{ $produto->imagem }}" 
              alt="" 
@@ -68,7 +80,7 @@
                     <button class="btn btn-success" type="submit">Salvar</button>
                 </div>
                 <div class="col">
-                    <button onclick="limparCampos()" class="btn btn-danger">Limpar</button>
+                    <button type="button" onclick="limparCampos()" class="btn btn-danger">Limpar</button>
                 </div>
             </div>
         </form>
@@ -76,12 +88,12 @@
     </div>
     <script>
         function limparCampos(){
-            document.getElementById('nome').innerText=""
-            document.getElementById('imagem').innerText=""
-            document.getElementById('preco').innerText=""
-            document.getElementById('estoque').innerText=""
-            document.getElementById('quantidade').innerText=""
-            document.getElementById('unidade').innerText=""
+            document.getElementById('nome').value=""
+            document.getElementById('imagem').value=""
+            document.getElementById('preco').value=""
+            document.getElementById('estoque').value=""
+            document.getElementById('quantidade').value=""
+            document.getElementById('unidade').value=""
 
             
 

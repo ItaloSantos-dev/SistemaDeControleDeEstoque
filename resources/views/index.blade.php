@@ -16,12 +16,18 @@
         </div>
         <div class="row m-2">
             <div class="col">
-                <a href="" class="btn btn-primary shadow">Realizar venda</a>
+                <a href="{{route('produtos.index')}}" class="btn btn-primary shadow">Estoque</a>
             </div>
         </div>
         <div class="row m-2">
             <div class="col">
-                <a href="{{route('produtos.index')}}" class="btn btn-primary shadow">Estoque</a>
+                <a href="{{route('vendas.create')}}" class="btn btn-primary shadow">Realizar venda</a>
+            </div>
+        </div>
+        
+        <div class="row m-2">
+            <div class="col">
+                <a href="{{route('vendas.index')}}" class="btn btn-primary shadow">Vendas</a>
             </div>
         </div>
     </div>

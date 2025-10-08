@@ -74,7 +74,34 @@ class ProdutoController extends Controller
      */
     public function update(Request $request, Produto $produto)
     {
-        //atualizar os campos
+        if($request->filled('nome')){
+            $novosdados['nome']=$request->nome;
+        }
+        if($request->filled('categoria_id')){
+            $novosdados['categoria_id']=$request->categoria_id;
+        }
+        if($request->filled('imagem')){
+            $novosdados['imagem']=$request->imagem;
+        }
+        if($request->filled('preco')){
+            $novosdados['preco']=$request->preco;
+        }
+        if($request->filled('estoque')){
+            $novosdados['estoque']=$request->estoque;
+        }
+        if($request->filled('quantidade')){
+            $novosdados['quantidade']=$request->quantidade;
+        }
+        if($request->filled('unidade')){
+            $novosdados['unidade']=$request->unidade;
+        }
+        
+        if($produto->update($novosdados)){
+            return redirect()->route('produtos.edit', $produto->id)->with('info', 'Produto atualizado com sucesso');
+        }
+        else{
+            return redirect()->route('produtos.edit', $produto->id)->with('info', 'Não foi possível atualizar o produto');
+        }
     }
 
     /**
