@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Forma;
 use App\Models\Produto;
+use App\Models\ProdutoVenda;
 use App\Models\Venda;
 use Illuminate\Http\Request;
 
@@ -23,7 +24,7 @@ class VendaController extends Controller
      */
     public function create()
     {
-        $produtos = Produto::where('estoque', '>', 1)->get();
+        $produtos = Produto::where('estoque', '>=', 1)->get();
         return view('realizarvenda', compact('produtos'));
     }
 
@@ -36,6 +37,24 @@ class VendaController extends Controller
         $novaVenda->valor_final = session('valorTotal');
         $novaVenda->forma=$request->forma;
         $novaVenda->save();
+        $carrinho = session('carrinho');
+
+        foreach($carrinho as $id=>$item){
+            $produtoVenda = new ProdutoVenda();
+            $produtoVenda->produto_id = $item['produto']->id;
+            $produtoVenda->venda_id = $novaVenda->id;
+            $produtoVenda->quantidade = $item['qtd'];
+            $produtoVenda->valor_total = $item['qtd']*$item['produto']->preco;
+            $produtoVenda->produto_preco = $item['produto']->preco;
+            $produtoVenda->forma = $novaVenda->forma;
+            $produtoVenda->data = now();
+            $produtoVenda->save();
+            $produto = Produto::find($item['produto']->id);
+            $novoEstoque['estoque'] =$produto->estoque - $item['qtd'];
+            $produto->update($novoEstoque);
+        }
+        
+
         session()->forget('carrinho');
         session()->forget('valorTotal');
 

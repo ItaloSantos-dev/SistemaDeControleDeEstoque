@@ -14,4 +14,9 @@ class Produto extends Model
         return $this->belongsTo(Categoria::class);
     }
 
+    //Relação com a tabela pivo
+    public function vendas(){
+        return $this->belongsToMany(Venda::class, 'produto_venda')->withPivot('quantidade', 'produto_preco')->withTimestamps();
+    }
+
 }

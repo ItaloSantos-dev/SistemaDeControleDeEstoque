@@ -13,12 +13,10 @@ return new class extends Migration
     {
         Schema::create('vendas', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id');
             $table->decimal('valor_final', 6,2);
             $table-> enum('forma', ['pix', 'crédito', 'débito', 'dinheiro']);
             $table->timestamps();
 
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

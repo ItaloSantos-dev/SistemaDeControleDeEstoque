@@ -61,7 +61,7 @@ class CarrinhoController extends Controller
         }
         
         
-        return redirect()->route('vendas.create')->with('info', 'Produto removido com sucesso');
+        return redirect()->route('vendas.create')->with('info', 'Produto removido com sucesso')->with('abrirLateral', 'chegou');
 
     }
 
