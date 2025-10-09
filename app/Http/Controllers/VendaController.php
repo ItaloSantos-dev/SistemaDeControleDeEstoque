@@ -15,7 +15,7 @@ class VendaController extends Controller
      */
     public function index()
     {
-        $vendas=Venda::all();
+        $vendas=Venda::with('items.produto')->get();
         return view('vendas', compact('vendas'));
     }
 
@@ -36,6 +36,7 @@ class VendaController extends Controller
         $novaVenda = new Venda();
         $novaVenda->valor_final = session('valorTotal');
         $novaVenda->forma=$request->forma;
+        $novaVenda->data = now();
         $novaVenda->save();
         $carrinho = session('carrinho');
 

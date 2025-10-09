@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('vendas', function (Blueprint $table) {
             $table->id();
             $table->decimal('valor_final', 6,2);
+            $table->dateTime('data');
             $table-> enum('forma', ['pix', 'crédito', 'débito', 'dinheiro']);
             $table->timestamps();
 
